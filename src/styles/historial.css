@@ -1,0 +1,27 @@
+.historial{
+    border-top: 1px solid #000;
+overflow-y: auto;
+height: 20em;
+}
+
+.cont-historial{
+text-align: center;
+}
+
+.historial-lista{
+    text-align: center;
+    padding: .8em 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+}
+li{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2em;
+    border-bottom: 1px solid #000;
+    align-items: center;
+    padding: .5em 0;
+}

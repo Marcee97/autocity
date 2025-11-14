@@ -1,0 +1,37 @@
+.home{
+position: relative;
+}
+.cont-home{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .4em 0 ;
+    gap: 2em;
+    align-items: center;
+    height: 34em;
+
+}
+.home-select-field{
+    font-size: 1.3em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 .5em;
+    margin-bottom: 8em;
+}
+.home-input-vn{
+    padding: .2em;
+    font-size: 4em;
+    width: 80%;
+    border-radius: 9px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.buttons{
+    font-size: 1.5em;
+    padding: .5em;
+    width: 90%;
+
+}
+

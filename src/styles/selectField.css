@@ -1,0 +1,12 @@
+.select-field{
+padding: .5em;
+width: 45%;
+}
+
+.cont-select-field{
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    font-size: 1.2em;
+}
+
