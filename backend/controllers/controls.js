@@ -1,10 +1,10 @@
-import { pool } from "../db/db"
+import { pool } from "../db/db.js"
 
 
-export const prueba = (req, res) => {
+export const prueba = async(req, res) => {
     console.log(req.body, "messias")
     res.send("Ruta de prueba funcionando")
-    pool.query ("INSERT INTO lavados (marca, vin, ubicacion, tiempo) VALUES (?,?,?,?)",
+   await pool.query ("INSERT INTO lavados (marca, vin, ubicacion, tiempo) VALUES (?,?,?,?)",
     [req.body.marca, req.body.vin, req.body.ubicacion, req.body.tiempoFOrmateado])
 }
 

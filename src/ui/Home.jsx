@@ -64,7 +64,7 @@ export const Home = () => {
         `Terminado:${marca} (${vin}) ${ubicacion} ${formato(tiempo)}`
       );
       const tiempoFOrmateado = formato(tiempo);
-      const response = await axios.post("http://localhost:3000/prueba", {
+      const response = await axios.post("https://autocityback-production.up.railway.app/prueba", {
         marca,vin,ubicacion, tiempoFOrmateado
       });
     } else {

@@ -9,7 +9,7 @@ export const Historial = ({ autoLavado }) => {
 
 const fetchLavados = async () => {
   try{
-    const response = await axios.get("http://localhost:3000/lavados")
+    const response = await axios.get("https://autocityback-production.up.railway.app/lavados")
     console.log(response.data)
     setHistorial(response.data) 
   }catch(error) {
