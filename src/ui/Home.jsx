@@ -12,7 +12,7 @@ export const Home = () => {
   const [tiempo, setTiempo] = useState(0);
   const [corriendo, setCorriendo] = useState(false);
   const [onModal, setOnModal] = useState(false);
-  const [autoLavado, setAutoLavado] = useState(null);
+  const [autoLavado, setAutoLavado] = useState(false);
   const interValorRef = useRef(null);
   const inputVinRef = useRef(null);
 
@@ -60,13 +60,19 @@ export const Home = () => {
       clearInterval(interValorRef.current);
       setTiempo(0);
       setCorriendo(false);
-      setAutoLavado(
-        `Terminado:${marca} (${vin}) ${ubicacion} ${formato(tiempo)}`
-      );
       const tiempoFOrmateado = formato(tiempo);
-      const response = await axios.post("https://autocityback-production.up.railway.app/prueba", {
-        marca,vin,ubicacion, tiempoFOrmateado
-      });
+      //https://autocityback-production.up.railway.app/prueba
+      const response = await axios.post(
+        "https://autocityback-production.up.railway.app/prueba",
+        {
+          marca,
+          vin,
+          ubicacion,
+          tiempoFOrmateado,
+        }
+      );
+      setAutoLavado(prev => !prev);
+
     } else {
       console.log("el lavado sigue corriendo");
     }
@@ -96,16 +102,19 @@ export const Home = () => {
             name="ubicacion"
             onChange={setUbicacion}
             options={ubicaciones}
+            value={ubicacion}
           />
           <SelectField
             label="Marca"
             name="marcas"
             onChange={setMarca}
             options={marcas}
+            value={marca}
           />
         </div>
-
-        <p>{formato(tiempo)}</p>
+        <div className="cont-tiempo">
+          <h4 className="tiempo">{formato(tiempo)}</h4>
+        </div>
 
         {corriendo ? (
           <button className="buttons" onClick={openModal}>

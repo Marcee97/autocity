@@ -1,12 +1,20 @@
 import { pool } from "../db/db.js"
 
 
-export const prueba = async(req, res) => {
-    console.log(req.body, "messias")
-    res.send("Ruta de prueba funcionando")
-   await pool.query ("INSERT INTO lavados (marca, vin, ubicacion, tiempo) VALUES (?,?,?,?)",
-    [req.body.marca, req.body.vin, req.body.ubicacion, req.body.tiempoFOrmateado])
+export const testing = (req, res) => {
+    res.send("El servidor funciona correctamente")
 }
+
+export const prueba = async(req, res) => {
+    try{
+
+        await pool.query ("INSERT INTO lavados (marca, vin, ubicacion, tiempo) VALUES (?,?,?,?)",
+            [req.body.marca, req.body.vin, req.body.ubicacion, req.body.tiempoFOrmateado])
+            res.send("Ruta de prueba funcionando")
+        }catch(error) {
+            console.log(error)
+        }
+    }
 
 
 export const getLavados = async(req, res) => {

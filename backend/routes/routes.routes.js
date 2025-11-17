@@ -1,8 +1,8 @@
 import {Router} from "express";
-import { getLavados, prueba } from "../controllers/controls.js";
+import { getLavados, prueba, testing } from "../controllers/controls.js";
 
 const router = Router();
-
+router.get("/", testing)
 router.post("/prueba", prueba)
 router.get("/lavados", getLavados)
 

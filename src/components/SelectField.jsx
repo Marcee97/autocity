@@ -7,6 +7,7 @@ export const SelectField = ({ options, label, onChange, value }) => {
         name="marcas"
         className="cont-select-field"
         onChange={(e) => onChange(e.target.value)}
+        value={value}
       >
         <option >{label}</option>
         {options.map((option) => (
