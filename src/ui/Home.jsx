@@ -93,6 +93,8 @@ export const Home = () => {
         <input
           ref={inputVinRef}
           type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
           className="home-input-vn"
           onChange={(e) => setVin(e.target.value)}
         />
