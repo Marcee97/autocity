@@ -7,12 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000000fa;
+  background-color: #000000fb;
   color: #fff;
   padding: .8em ;
   text-align: center;
   border-radius: 8px;
   font-size: 1.3em;
+  width: 90%;
+  backdrop-filter: blur(4px);
 }
 .cont-modal {
   display: flex;

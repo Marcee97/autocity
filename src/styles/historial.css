@@ -9,38 +9,40 @@ text-align: center;
 padding: 1.5em 0;
 }
 
-.historial-lista li {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
- 
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+.historial-lista {
   font-size: 1.2em;
 }
 
 
-.historial-lista span {
-  overflow: hidden;
-  text-overflow: ellipsis;
+.fila {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
   white-space: nowrap; 
-}
 
-.auto-lavado-ultimo {
-    background-color: #d4edda;
+  font-size: 1em;
 }
 
 
-.animado {
-  animation: entrar 1s ease-out;
+.fila-animation{
+   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  white-space: nowrap; 
+  font-size: 1em;
+  transition: .5 ease-in-out;
+padding: 1.3em 0;
 }
 
-@keyframes entrar {
-  from {
-    background-color: rgba(0, 150, 255, 0.3);
-    transform: scale(0.96);
-  }
-  to {
-    background-color: transparent;
-    transform: scale(1);
-  }
+.historial-lista span {
+
+
 }
+
+

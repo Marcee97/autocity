@@ -3,7 +3,7 @@ import "../styles/home.css";
 import { SelectField } from "../components/SelectField";
 import { Modal } from "./Modal";
 import { Historial } from "./Historial";
-import axios from "axios";
+import client from "../api/axios.js";
 
 export const Home = () => {
   const [vin, setVin] = useState(0);
@@ -16,8 +16,20 @@ export const Home = () => {
   const interValorRef = useRef(null);
   const inputVinRef = useRef(null);
 
+
+
+
   const marcas = ["Fiat", "Peugeot", "Renault", "Nissan", "Volkswagen", "BYD"];
   const ubicaciones = ["Vereda", "Batea", "Salon", "Ingreso"];
+
+useEffect(() => {
+    console.log("BACKEND URL:", import.meta.env.VITE_BACKEND_URL);
+
+    client.get("/lavados")
+      .then(res => console.log("Respuesta del backend:", res.data))
+      .catch(err => console.log("ERROR al conectar con backend:", err));
+  }, []);
+
 
   const iniciarLavado = () => {
     if (vin === 0 || marca === "" || ubicacion === "" || corriendo === true) {
@@ -52,6 +64,7 @@ export const Home = () => {
     setOnModal(true);
   };
   const detenerLavado = async () => {
+    try{
     if (corriendo) {
       inputVinRef.current.value = "";
       setMarca("");
@@ -62,21 +75,23 @@ export const Home = () => {
       setCorriendo(false);
       const tiempoFOrmateado = formato(tiempo);
       //https://autocityback-production.up.railway.app/prueba
-      const response = await axios.post(
-        "https://autocityback-production.up.railway.app/prueba",
-        {
-          marca,
-          vin,
-          ubicacion,
-          tiempoFOrmateado,
-        }
-      );
-      setAutoLavado(prev => !prev);
 
+          const response = await client.post("/prueba", {
+        marca,
+        vin,
+        ubicacion,
+        tiempoFOrmateado,
+      });
+   console.log("Guardado OK:", response.data);
+      setAutoLavado(prev => !prev);
+ 
     } else {
       console.log("el lavado sigue corriendo");
     }
-  };
+    } catch (error) {
+          console.error("Error al enviar los datos del lavado:", error);
+        }
+  }; 
   const formato = (segundos) => {
     const horas = Math.floor(segundos / 3600);
     const minutos = Math.floor((segundos % 3600) / 60);
