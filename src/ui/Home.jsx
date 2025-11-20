@@ -22,14 +22,6 @@ export const Home = () => {
   const marcas = ["Fiat", "Peugeot", "Renault", "Nissan", "Volkswagen", "BYD"];
   const ubicaciones = ["Vereda", "Batea", "Salon", "Ingreso"];
 
-useEffect(() => {
-    console.log("BACKEND URL:", import.meta.env.VITE_BACKEND_URL);
-
-    client.get("/lavados")
-      .then(res => console.log("Respuesta del backend:", res.data))
-      .catch(err => console.log("ERROR al conectar con backend:", err));
-  }, []);
-
 
   const iniciarLavado = () => {
     if (vin === 0 || marca === "" || ubicacion === "" || corriendo === true) {

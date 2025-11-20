@@ -1,4 +1,3 @@
-import axios from "axios";
 import "../styles/historial.css";
 import { useEffect, useState } from "react";
 import client from "../api/axios.js";
@@ -20,9 +19,7 @@ const fetchLavados = async () => {
     //https://autocityback-production.up.railway.app
     const response = await client.get("/lavados")
    
-console.log(response.data, "aca estan los lavados")
     setHistorial([...response.data].reverse());
-response.json(response.data);
 
   }catch(error) {
     console.log(error, "aca esta elerror")
