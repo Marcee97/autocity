@@ -1,9 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import "../styles/home.css";
 import { SelectField } from "../components/SelectField";
 import { Modal } from "./Modal";
 import { Historial } from "./Historial";
 import client from "../api/axios.js";
+import { Menu } from "./Menu.jsx";
 
 export const Home = () => {
   const [vin, setVin] = useState(0);
@@ -19,7 +20,7 @@ export const Home = () => {
 
 
 
-  const marcas = ["Fiat", "Peugeot", "Renault", "Nissan", "Volkswagen", "BYD"];
+  const marcas = ["Fiat", "Peugeot", "Renault", "Nissan", "Volkswagen", "BYD", "MG","Chery"];
   const ubicaciones = ["Vereda", "Batea", "Salon", "Ingreso"];
 
 
@@ -95,7 +96,7 @@ export const Home = () => {
 
   return (
     <section className="home">
-      <h1>Autocity</h1>
+      <Menu />
       <div className="cont-home">
         <input
           ref={inputVinRef}

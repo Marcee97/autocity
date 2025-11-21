@@ -1,0 +1,60 @@
+.menu {
+  position: relative;
+}
+.cont-menu-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em 0.5em;
+}
+.cont-menu-desplegable {
+  position: absolute;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.966);
+  backdrop-filter: blur(8px);
+  height: 100vh;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  transition: .5s all ease-in-out;
+  width: 49%;
+
+}
+
+.cont-menu-desplegable.active {
+  position: absolute;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.966);
+  height: 100vh;
+  transform: translateX(-0%);
+  backdrop-filter: blur(8px);
+  transition: .5s all ease-in-out;
+  z-index: 45;
+  right: 0;
+  top: 0;
+  width: 49%;
+}
+.icon-close-menu {
+  font-size: 3em;
+  margin-left: 75%;
+}
+
+.icon-open-menu{
+    font-size: 3em;
+}
+
+.options-menu-desplegable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    gap: .8em;
+
+   
+}
+
+.li-option{
+
+font-size: 2.6em;
+}

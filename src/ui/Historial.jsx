@@ -16,7 +16,6 @@ const fetchLavados = async () => {
 
   try{
   
-    //https://autocityback-production.up.railway.app
     const response = await client.get("/lavados")
    
     setHistorial([...response.data].reverse());
