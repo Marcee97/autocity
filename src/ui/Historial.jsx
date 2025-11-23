@@ -38,7 +38,10 @@ fetchLavados()
           <div className="historial-lista">
             {historial.map((lav, index) => (
               <React.Fragment key={index}>
+                <div className="cont-fecha-hora">
+               <span>{lav.hora}</span>
                <span>{lav.fecha}</span>
+                </div>
               <div className="fila-animation">
                 <span>{lav.marca}</span>
                 <span>{lav.vin}</span>

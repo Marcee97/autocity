@@ -1,4 +1,3 @@
-import axios from "axios";
 import "../styles/menu.css";
 import { useEffect, useState } from "react";
 import client from "../api/axios.js";
@@ -29,10 +28,10 @@ export const Menu = () => {
       return acc + h * 3600 + m * 60 + s;
     }, 0);
 
-    // Calcular promedio
+    // calcular promedio
     const promedio = Math.floor(totalSegundos / tiempos.length);
 
-    // Convertir de vuelta a HH.MM.SS
+    // Convertri de vuelta a HH.MM.SS
     const horas = String(Math.floor(promedio / 3600)).padStart(2, "0");
     const minutos = String(Math.floor((promedio % 3600) / 60)).padStart(2, "0");
     const segundos = String(promedio % 60).padStart(2, "0");
@@ -63,7 +62,14 @@ export const Menu = () => {
           close
         </span>
         <div className="options-menu-desplegable">
-          <p>Tiempo promedio de lavado</p>
+          <p>Promedios</p>
+          <p>Compañeros</p>
+          <p>Peticiones</p>
+          <p></p>
+        </div>
+
+        <div >
+         
           <p className="li-option">{promedio}</p>
         </div>
       </div>

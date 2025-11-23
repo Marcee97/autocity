@@ -1,5 +1,7 @@
 .menu {
   position: relative;
+  background-color: #000000;
+  color: #fff;
 }
 .cont-menu-buttons {
   display: flex;
