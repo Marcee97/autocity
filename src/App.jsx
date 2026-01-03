@@ -1,7 +1,8 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./ui/Home";
 import { Login } from "./ui/Login";
-import { RutasProtegidas } from "./components/rutasProtegidas.jsx";
+import { RutasProtegidas } from "./components/rutasProtegidas";
+
 export const App = () => {
   return (
     <>

@@ -19,6 +19,3 @@ export const RutasProtegidas = () => {
 
   return autorizado ? <Outlet /> : <Navigate to="/" />;
 };
-
-
-//  const response = await client.post("/home", {
