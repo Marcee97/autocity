@@ -8,7 +8,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<RutasProtegidas />}>
+        <Route element={<RutasProtegidas/>}>
         
           <Route path="/home" element={<Home />} />
         
