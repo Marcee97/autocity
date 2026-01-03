@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import client from "../api/axios.js";
 
-export const RutasProtegidas = () => {
+export const Privadas = () => {
   const [autorizado, setAutorizado] = useState(null);
 
   useEffect(() => {

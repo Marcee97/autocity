@@ -1,15 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./ui/Home";
 import { Login } from "./ui/Login";
-import { RutasProtegidas } from "./components/rutasProtegidas";
-
+import { Privadas } from "../src/components/Privadas";
 export const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<RutasProtegidas/>}>
+        <Route element={<Privadas/>}>
         
           <Route path="/home" element={<Home />} />
         
