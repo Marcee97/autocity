@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
-import { Menu } from "./Menu";
 import { useEffect, useState } from "react";
 import client from "../api/axios.js";
 export const Login = () => {
@@ -60,7 +59,6 @@ export const Login = () => {
 
   return (
     <div className="componente-login">
-      <Menu />
       <div className="login">
         <div className="cont-login">
           <h3 className="titulo-login">
