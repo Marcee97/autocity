@@ -5,6 +5,7 @@ import { Modal } from "./Modal";
 import { Historial } from "./Historial";
 import client from "../api/axios.js";
 import { Menu } from "./Menu.jsx";
+import { Footer } from "./Footer.jsx";
 
 export const Home = () => {
   const [vin, setVin] = useState(0);
@@ -69,7 +70,7 @@ export const Home = () => {
       const tiempoFOrmateado = formato(tiempo);
       //https://autocityback-production.up.railway.app/prueba
 
-          const response = await client.post("/prueba", {
+          const response = await client.post("/home", {
         marca,
         vin,
         ubicacion,
@@ -145,6 +146,7 @@ export const Home = () => {
         detenerLavado={detenerLavado}
       />
       <Historial autoLavado={autoLavado} />
+      <Footer/>
     </section>
   );
 };

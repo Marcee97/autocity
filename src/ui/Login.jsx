@@ -30,9 +30,9 @@ export const Login = () => {
 
       console.log(response);
 
-      //  if(response.status === 200){
-      //   navigate("/lavados")
-      //  }
+       if(response.status === 200){
+        navigate("/home")
+       }
 
       console.log(response.status, "estado en el front");
     } catch (error) {
