@@ -6,8 +6,8 @@ export const Privadas = () => {
   const [autorizado, setAutorizado] = useState(null);
 
   useEffect(() => {
-    client.get("/verify", {
-      withCredentials: true
+    console.log("desde el verifiiy")
+    client.get("/verify", { withCredentials: true }, {
     })
     .then(() => setAutorizado(true))
     .catch(() => setAutorizado(false));
