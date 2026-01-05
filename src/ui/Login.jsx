@@ -25,9 +25,14 @@ export const Login = () => {
       const response = await client.post("/ingreso", {
         usuario,
         password,
+        
       });
+      
+      const {token} = response.data;
 
-      console.log(response);
+      localStorage.setItem("token", token)
+
+      console.log(token, "token en front desde el back");
 
        if(response.status === 200){
         navigate("/home")
