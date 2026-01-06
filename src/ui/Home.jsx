@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../styles/home.css";
 import { SelectField } from "../components/SelectField";
 import { Modal } from "./Modal";
@@ -8,7 +8,7 @@ import { Menu } from "./Menu.jsx";
 import { Footer } from "./Footer.jsx";
 
 export const Home = () => {
-  const [vin, setVin] = useState(0);
+  const [vin, setVin] = useState("");
   const [marca, setMarca] = useState("");
   const [ubicacion, setUbicacion] = useState("");
   const [tiempo, setTiempo] = useState(0);
@@ -18,74 +18,101 @@ export const Home = () => {
   const interValorRef = useRef(null);
   const inputVinRef = useRef(null);
 
-
-
-
-  const marcas = ["Fiat", "Peugeot", "Renault", "Nissan", "Volkswagen", "BYD", "MG","Chery"];
+  const marcas = [
+    "Fiat",
+    "Peugeot",
+    "Renault",
+    "Jeep",
+    "Nissan",
+    "Volkswagen",
+    "BYD",
+    "MG",
+    "Chery",
+  ];
   const ubicaciones = ["Vereda", "Batea", "Salon", "Ingreso"];
 
-
   const iniciarLavado = () => {
-    if (vin === 0 || marca === "" || ubicacion === "" || corriendo === true) {
-      console.log(
-        "Faltan datos del vehiculo",
-        corriendo,
-        vin,
-        marca,
-        ubicacion
-      );
-      return;
-    } else {
-      setCorriendo(true);
-    }
+    if (vin === 0 || marca === "" || ubicacion === "" || corriendo) return;
 
-    const inicio = Date.now() - tiempo * 1000;
+    const inicioLavado = Date.now();
+    localStorage.setItem("inicioLavado", inicioLavado);
+
+    localStorage.setItem("marca", marca);
+    localStorage.setItem("ubicacion", ubicacion);
+    localStorage.setItem("vin", vin);
+
+    setCorriendo(true);
+
+    console.log("Inicio lavado:", inicioLavado);
+  };
+
+  useEffect(() => {
+    if (!corriendo) return;
+
+    const inicioLavado = Number(localStorage.getItem("inicioLavado"));
+    if (!inicioLavado) return;
+
     interValorRef.current = setInterval(() => {
-      setTiempo(((Date.now() - inicio) / 1000).toFixed(1));
+      const elapsed = (Date.now() - inicioLavado) / 1000;
+      setTiempo(elapsed);
     }, 100);
 
-    console.log(
-      "el vin es",
-      vin,
-      "la marca es",
-      marca,
-      "y la ubicacion es",
-      ubicacion
-    );
-  };
+    return () => clearInterval(interValorRef.current);
+  }, [corriendo]);
+
+  useEffect(() => {
+    const inicioLavado = localStorage.getItem("inicioLavado");
+    if (inicioLavado) {
+      setCorriendo(true);
+      setMarca(localStorage.getItem("marca") || "");
+      setUbicacion(localStorage.getItem("ubicacion") || "");
+      setVin(localStorage.getItem("vin") || "");
+    }
+  }, []);
 
   const openModal = () => {
     setOnModal(true);
   };
-  const detenerLavado = async () => {
-    try{
-    if (corriendo) {
-      inputVinRef.current.value = "";
-      setMarca("");
-      setUbicacion("");
-      setOnModal(false);
-      clearInterval(interValorRef.current);
-      setTiempo(0);
-      setCorriendo(false);
-      const tiempoFOrmateado = formato(tiempo);
-      //https://autocityback-production.up.railway.app/prueba
 
-          const response = await client.post("/home", {
+  const detenerLavado = async () => {
+    if (!corriendo) return;
+
+    clearInterval(interValorRef.current);
+
+    const tiempoFormateado = formato(tiempo);
+
+    try {
+      await client.post("/home", {
         marca,
         vin,
         ubicacion,
-        tiempoFOrmateado,
+        tiempoFOrmateado: tiempoFormateado,
       });
-   console.log("Guardado OK:", response.data);
-      setAutoLavado(prev => !prev);
- 
-    } else {
-      console.log("el lavado sigue corriendo");
-    }
+
+      // 🔥 LIMPIAR LOCALSTORAGE
+      localStorage.removeItem("inicioLavado");
+      localStorage.removeItem("marca");
+      localStorage.removeItem("ubicacion");
+      localStorage.removeItem("vin");
+
+      // 🔄 RESET ESTADO
+      setTiempo(0);
+      setCorriendo(false);
+      setOnModal(false);
+      setMarca("");
+      setUbicacion("");
+      setVin(0);
+
+      inputVinRef.current.value = "";
+
+      setAutoLavado((prev) => !prev);
+
+      console.log("Lavado finalizado y guardado");
     } catch (error) {
-          console.error("Error al enviar los datos del lavado:", error);
-        }
-  }; 
+      console.error("Error al guardar lavado:", error);
+    }
+  };
+
   const formato = (segundos) => {
     const horas = Math.floor(segundos / 3600);
     const minutos = Math.floor((segundos % 3600) / 60);
@@ -101,11 +128,12 @@ export const Home = () => {
       <div className="cont-home">
         <input
           ref={inputVinRef}
-          type="number"
+          type="text"
           inputMode="numeric"
           pattern="[0-9]*"
           className="home-input-vn"
           onChange={(e) => setVin(e.target.value)}
+          value={vin}
         />
         <div className="home-select-field">
           <SelectField
@@ -146,7 +174,7 @@ export const Home = () => {
         detenerLavado={detenerLavado}
       />
       <Historial autoLavado={autoLavado} />
-      <Footer/>
+      <Footer />
     </section>
   );
 };
