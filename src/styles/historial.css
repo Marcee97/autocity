@@ -1,7 +1,7 @@
 .historial{
     border-top: 1px solid #000;
 overflow-y: auto;
-height: 20em;
+max-height: 49em;
 }
 
 .cont-historial{

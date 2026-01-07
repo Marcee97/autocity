@@ -41,7 +41,7 @@ export const Menu = () => {
   return (
     <section className="menu">
       <nav className="cont-menu-buttons">
-        <h1>Autocity</h1>
+        <h1 className="menu-titulo">Autocity</h1>
         <span
           className="material-symbols-outlined icon-open-menu"
           onClick={() => setMenuOpen((prev) => !prev)}

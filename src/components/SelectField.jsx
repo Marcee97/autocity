@@ -11,7 +11,7 @@ export const SelectField = ({ options, label, onChange, value }) => {
       >
         <option >{label}</option>
         {options.map((option) => (
-          <option key={option} value={option}>
+          <option key={option} value={option} className="select-field-options">
             {option}
           </option>
         ))}

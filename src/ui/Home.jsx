@@ -28,8 +28,9 @@ export const Home = () => {
     "BYD",
     "MG",
     "Chery",
+    "Jetour"
   ];
-  const ubicaciones = ["Vereda", "Batea", "Salon", "Ingreso"];
+  const ubicaciones = ["Vereda", "Batea", "Salon", "Alistado", "Entrega", "Otro"];
 
   const iniciarLavado = () => {
     if (vin === 0 || marca === "" || ubicacion === "" || corriendo) return;
@@ -129,7 +130,7 @@ export const Home = () => {
         <input
           ref={inputVinRef}
           type="text"
-          placeholder="Ingrese el VN"
+          placeholder="Vin"
           className="home-input-vn"
           onChange={(e) => setVin(e.target.value)}
           value={vin}
