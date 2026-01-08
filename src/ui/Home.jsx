@@ -30,7 +30,7 @@ export const Home = () => {
     "Chery",
     "Jetour"
   ];
-  const ubicaciones = ["Vereda", "Batea","Test Drive", "Salon", "Alistado", "Entrega", "Otro"];
+  const ubicaciones = ["Vereda", "Batea","Test Drive","Evento", "Salon", "Alistado", "Entrega", "Otro"];
 
   const iniciarLavado = () => {
     if (vin === 0 || marca === "" || ubicacion === "" || corriendo) return;
