@@ -11,33 +11,75 @@ export const Home = () => {
   const [vin, setVin] = useState("");
   const [marca, setMarca] = useState("");
   const [ubicacion, setUbicacion] = useState("");
+  const [modelo, setModelo] = useState("");
   const [tiempo, setTiempo] = useState(0);
   const [corriendo, setCorriendo] = useState(false);
   const [onModal, setOnModal] = useState(false);
   const [autoLavado, setAutoLavado] = useState(false);
   const interValorRef = useRef(null);
   const inputVinRef = useRef(null);
-
   const marcas = [
-    "Fiat",
-    "Peugeot",
-    "Renault",
-    "Jeep",
-    "Nissan",
-    "Volkswagen",
-    "BYD",
-    "MG",
-    "Chery",
-    "Jetour"
+    { label: "Fiat", value: "fiat" },
+    { label: "Peugeot", value: "peugeot" },
+    { label: "Renault", value: "renault" },
+    { label: "Jeep", value: "jeep" },
+    { label: "Nissan", value: "nissan" },
+    { label: "Volkswagen", value: "vw" },
+    { label: "BYD", value: "byd" },
+    { label: "MG", value: "mg" },
+    { label: "Chery", value: "chery" },
+    { label: "Jetour", value: "jetour" },
   ];
-  const ubicaciones = ["Vereda", "Batea","Test Drive","Evento", "Salon", "Alistado", "Entrega", "Otro"];
+
+  const modelosPorMarca = {
+    fiat: [
+      { label: "Cronos", value: "cronos" },
+      { label: "Argo", value: "argo" },
+    ],
+    peugeot: [
+      { label: "208", value: "208" },
+      { label: "2008", value: "2008" },
+    ],
+    vw: [
+      { label: "Polo", value: "polo" },
+      { label: "Gol", value: "gol" },
+    ],
+    ford: [
+      { label: "Fiesta", value: "fiesta" },
+      { label: "Focus", value: "focus" },
+    ],
+    toyota: [
+      { label: "Corolla", value: "corolla" },
+      { label: "Hilux", value: "hilux" },
+    ],
+  };
+  const ubicaciones = [
+    { label: "Vereda", value: "vereda" },
+    { label: "Batea", value: "batea" },
+    { label: "Test Drive", value: "test_drive" },
+    { label: "Evento", value: "evento" },
+    { label: "Salón", value: "salon" },
+    { label: "Alistado", value: "alistado" },
+    { label: "Entrega", value: "entrega" },
+    { label: "Otro", value: "otro" },
+  ];
+  useEffect(() => {
+    setModelo("");
+  }, [marca]);
 
   const iniciarLavado = () => {
-    if (vin === 0 || marca === "" || ubicacion === "" || corriendo) return;
+    if (
+      vin === 0 ||
+      marca === "" ||
+      ubicacion === "" ||
+      corriendo ||
+      modelo === ""
+    )
+      return;
 
     const inicioLavado = Date.now();
     localStorage.setItem("inicioLavado", inicioLavado);
-
+    localStorage.setItem("modelo", modelo);
     localStorage.setItem("marca", marca);
     localStorage.setItem("ubicacion", ubicacion);
     localStorage.setItem("vin", vin);
@@ -67,6 +109,7 @@ export const Home = () => {
       setCorriendo(true);
       setMarca(localStorage.getItem("marca") || "");
       setUbicacion(localStorage.getItem("ubicacion") || "");
+      setModelo(localStorage.getItem("modelo") || "");
       setVin(localStorage.getItem("vin") || "");
     }
   }, []);
@@ -87,6 +130,7 @@ export const Home = () => {
         marca,
         vin,
         ubicacion,
+        modelo,
         tiempoFOrmateado: tiempoFormateado,
       });
 
@@ -94,6 +138,7 @@ export const Home = () => {
       localStorage.removeItem("inicioLavado");
       localStorage.removeItem("marca");
       localStorage.removeItem("ubicacion");
+      localStorage.removeItem("modelo");
       localStorage.removeItem("vin");
 
       // 🔄 RESET ESTADO
@@ -102,7 +147,8 @@ export const Home = () => {
       setOnModal(false);
       setMarca("");
       setUbicacion("");
-      setVin(0);
+      setModelo("");
+      setVin("");
 
       inputVinRef.current.value = "";
 
@@ -151,6 +197,12 @@ export const Home = () => {
             value={marca}
           />
         </div>
+        <SelectField
+          label="Modelo"
+          name="modelo"
+          options={modelosPorMarca[marca] || []}
+          onChange={setModelo}
+        />
         <div className="cont-tiempo">
           <h4 className="tiempo">{formato(tiempo)}</h4>
         </div>

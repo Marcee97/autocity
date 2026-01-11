@@ -12,7 +12,7 @@ export const Historial = ({ autoLavado }) => {
     const fetchLavados = async () => {
       try {
         const response = await client.get("/lavados");
-
+console.log(response.data, "respuesta del historial");
         setHistorial([...response.data].reverse());
       } catch (error) {
         console.log(error, "aca esta elerror");
@@ -35,8 +35,12 @@ export const Historial = ({ autoLavado }) => {
                     <span>{lav.fecha}</span>
                   </div>
                   <div className="fila-animation">
+                    <div>
                     <span>{lav.marca}</span>
-                    <span>{lav.vin}</span>
+                    {" "}
+                    <span>{lav.modelo}</span>
+                    </div>
+                    <span>({lav.vin})</span>
                     <span>{lav.ubicacion}</span>
                     <span>{lav.tiempo}</span>
                   </div>

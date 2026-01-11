@@ -29,8 +29,6 @@ padding: 1.5em 0;
   white-space: nowrap; 
   font-size: 1em;
 }
-
-
 .fila-animation{
    display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -44,9 +42,6 @@ padding: 1.5em 0;
   padding: 1.3em 0;
 }
 
-.historial-lista span {
 
-
-}
 
 
