@@ -62,14 +62,12 @@ export const Menu = () => {
           close
         </span>
         <div className="options-menu-desplegable">
-          <p>Promedios</p>
-          <p>Compañeros</p>
-          <p>Peticiones</p>
-          <p></p>
+          
+          
         </div>
 
         <div >
-         
+         <p>Promedio </p>
           <p className="li-option">{promedio}</p>
         </div>
       </div>

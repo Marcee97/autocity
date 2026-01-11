@@ -28,6 +28,7 @@ console.log(response.data, "respuesta del historial");
         <article className="historial-cont-lista">
           {historial.length > 0 ? (
             <div className="historial-lista">
+              <p>Total autos lavados: {historial.length}</p>
               {historial.map((lav, index) => (
                 <React.Fragment key={index}>
                   <div className="cont-fecha-hora">

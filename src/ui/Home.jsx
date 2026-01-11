@@ -29,29 +29,88 @@ export const Home = () => {
     { label: "MG", value: "mg" },
     { label: "Chery", value: "chery" },
     { label: "Jetour", value: "jetour" },
+    {label: "Otro", value: "otro"}
   ];
 
   const modelosPorMarca = {
     fiat: [
       { label: "Cronos", value: "cronos" },
       { label: "Argo", value: "argo" },
+      { label: "Mobi", value: "mobi" },
+      {label: "Fastback", value: "fastback" },
+      {label: "Titano", value: "titano" },
+      { label: "Pulse", value: "pulse" },
+      { label: "Toro", value: "toro" },
+      { label: "Strada", value: "strada" },
+      { label: "600", value: "600" },
+      {label: "Otro", value: "otro"}
     ],
     peugeot: [
       { label: "208", value: "208" },
       { label: "2008", value: "2008" },
+      { label: "3008", value: "3008" },
+      { label: "408", value: "408" },
+      { label: "Partner", value: "partner" },
+      { label: "Expert", value: "expert" },
+      { label: "Boxer", value: "boxer" },
+      {label: "Otro", value: "otro"}
     ],
     vw: [
       { label: "Polo", value: "polo" },
-      { label: "Gol", value: "gol" },
+      { label: "Polo Track", value: "polo_track" },
+      { label: "Tera", value: "tera" },
+      { label: "Amarok", value: "amarok" },
+      {label: "Virtus", value: "virtus" },
+      { label: "T-Cross", value: "t_cross" },
+      { label: "Nivus", value: "nivus" },
+      { label: "Taos", value: "taos" },
+      {label: "Otro", value: "otro"}
     ],
-    ford: [
-      { label: "Fiesta", value: "fiesta" },
-      { label: "Focus", value: "focus" },
+    renault: [
+      { label: "Kwid", value: "kwid" },
+      { label: "Duster", value: "duster" },
+      { label: "Stepway", value: "stepway" },
+      { label: "Sandero", value: "sandero" },
+      { label: "Logan", value: "logan" },
+      { label: "Koleos", value: "koleos" },
+      { label: "Kardian", value: "kardian"},
+      {label: "Otro", value: "otro"}
     ],
-    toyota: [
-      { label: "Corolla", value: "corolla" },
-      { label: "Hilux", value: "hilux" },
+    nissan: [
+      { label: "Frontier", value: "frontier" },
+      { label: "Kicks", value: "kicks" },
+      { label: "X-Trail", value: "x_trail" },
+      { label: "Versa", value: "versa" },
+      { label: "Sentra", value: "sentra" },
+      {label: "Otro", value: "otro"}
     ],
+    jeep : [
+      { label: "Renegade", value: "renegade" },
+      { label: "Compass", value: "compass" },
+      {label: "Commander", value: "commander" },
+      { label: "Wrangler", value: "wrangler" },
+      { label: "Cherokee", value: "cherokee" },
+      {label: "Otro", value: "otro"}
+
+    ],
+    byd: [
+      {label: "Yuan Pro", value: "yuan_pro" },
+      {label: "Song Pro", value: "song_pro"},
+      {label: "Dolphin Mini", value: "dolphin_mini"},
+      {label: "Otro", value: "otro"}
+    ],
+    mg: [
+      {label: "Hybrid 3", value: "hybrid_3"},
+      {label: "Hybrid ZS", value: "zs"},
+      {label: "Otro", value: "otro"},
+    ],
+    chery: [
+      {label: "Tiggo 7 Pro", value: "tiggo_7_pro"},
+      {label: "Otro", value: "otro"}
+    ],
+    jetour: [
+      {label: "Dashing", value: "dashing"}
+    ]
   };
   const ubicaciones = [
     { label: "Vereda", value: "vereda" },
@@ -63,9 +122,6 @@ export const Home = () => {
     { label: "Entrega", value: "entrega" },
     { label: "Otro", value: "otro" },
   ];
-  useEffect(() => {
-    setModelo("");
-  }, [marca]);
 
   const iniciarLavado = () => {
     if (
@@ -188,24 +244,28 @@ export const Home = () => {
             onChange={setUbicacion}
             options={ubicaciones}
             value={ubicacion}
-          />
+            />
           <SelectField
             label="Marca"
             name="marcas"
             onChange={setMarca}
             options={marcas}
             value={marca}
-          />
+            />
         </div>
         <SelectField
           label="Modelo"
           name="modelo"
           options={modelosPorMarca[marca] || []}
           onChange={setModelo}
-        />
+          value={modelo}
+          />
         <div className="cont-tiempo">
           <h4 className="tiempo">{formato(tiempo)}</h4>
         </div>
+          
+        
+       
 
         {corriendo ? (
           <button className="buttons" onClick={openModal}>
